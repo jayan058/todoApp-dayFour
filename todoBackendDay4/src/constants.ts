@@ -1,0 +1,3 @@
+export const BCRYPT_SALT_ROUNDS = 10;
+export const REQUEST_RATE_LIMIT_WINDOW_MS = 60 * 1000; 
+export const MAXIMUM_REQUESTS_PER_WINDOW=10;
