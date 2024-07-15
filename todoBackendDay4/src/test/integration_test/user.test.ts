@@ -22,7 +22,6 @@ describe("User Routes Integration Tests", () => {
       "test@example.com"
     );
 
-    // Generate a token for the test user
     token = jwt.sign(
       {
         name: "new user",

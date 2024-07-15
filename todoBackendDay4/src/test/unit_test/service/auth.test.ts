@@ -28,7 +28,7 @@ describe("Auth Service Test Suite", () => {
   });
 
   describe("login", () => {
-     it("should throw NotFoundError if email does not exist", async () => {
+    it("should throw NotFoundError if email does not exist", async () => {
       const email = "nonexistent@example.com";
       const password = "password123";
 
@@ -59,8 +59,6 @@ describe("Auth Service Test Suite", () => {
     });
   });
 
- 
-
   describe("verifyRefreshToken", () => {
     it("should verify refresh token successfully", async () => {
       const token = "validToken";
@@ -89,11 +87,11 @@ describe("Auth Service Test Suite", () => {
   });
 
   describe("isRefreshTokenValid", () => {
-    it("should return true if refresh token is valid",async () => {
+    it("should return true if refresh token is valid", async () => {
       const token = "validToken";
       authService.refreshTokens.push(token);
 
-      const result =await authService.isRefreshTokenValid(token);
+      const result = await authService.isRefreshTokenValid(token);
 
       expect(result).toBe(true);
     });
@@ -102,7 +100,7 @@ describe("Auth Service Test Suite", () => {
       const token = "invalidToken";
       authService.refreshTokens.push(token);
 
-     expect(() => authService.isRefreshTokenValid(token)).rejects.toThrow(
+      expect(() => authService.isRefreshTokenValid(token)).rejects.toThrow(
         new ForbiddenError("Invalid refresh token")
       );
     });

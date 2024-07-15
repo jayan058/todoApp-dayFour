@@ -44,10 +44,8 @@ export function findUserByEmail(email: string) {
 export function findUserById(id: string) {
   return users.find((user) => user.id == id);
 }
-export function getUsers() { 
+export function getUsers() {
   return users;
- 
-  
 }
 export function deleteUser(user: User) {
   users = users.filter((existingUser) => existingUser.id !== user.id);
