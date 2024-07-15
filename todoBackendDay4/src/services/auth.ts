@@ -10,7 +10,7 @@ import config from "../config";
 import ForbiddenError from "../error/forbiddenError";
 import { StatusCodes } from "http-status-codes";
 
-let refreshTokens: string[] = [];
+export let refreshTokens: string[] = [];
 export async function login(email: string, password: string, res: Response) {
   const userExists = findUserByEmail(email);
   if (!userExists) {
@@ -56,7 +56,7 @@ export function verifyRefreshToken(token: string) {
     });
   });
 }
-export function isRefreshTokenValid(token: string) {
+export async function isRefreshTokenValid(token: string) {
   if (!refreshTokens.includes(token)) {
     throw new ForbiddenError("Invalid refresh token");
   }

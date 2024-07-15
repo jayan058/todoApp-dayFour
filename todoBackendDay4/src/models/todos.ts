@@ -20,7 +20,7 @@ export let todos: todos[] = [
 export function getAllTodos(user: any) {
   const foundUser = users.find((u) => u.id === user.id);
   if (!foundUser) {
-    return [];
+    return foundUser;
   }
   const userTodos = todos.filter((todo) => foundUser.todos.includes(todo.id));
   return userTodos;

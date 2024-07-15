@@ -5,10 +5,15 @@ import * as userModels from "../models/users";
 import UnauthorizedError from "../error/unauthorizedError";
 import NotFoundError from "../error/notFoundError";
 import { NextFunction } from "express";
-export function getAllTodos(user: any) {
-  return todosModels.getAllTodos(user);
+export async function getAllTodos(user: any) {
+  let todos = todosModels.getAllTodos(user);
+  if (todos) {
+    return todos;
+  } else {
+    throw new NotFoundError("Todos Not Found");
+  }
 }
-export function addTodo(todo: ITodo, headers: any) {
+export async function addTodo(todo: ITodo, headers: any) {
   const userId = headers.id;
   const user = userModels.findUserById(userId);
   if (!user) {
@@ -17,7 +22,7 @@ export function addTodo(todo: ITodo, headers: any) {
   let message = todosModels.createTodo(todo, user);
   return message;
 }
-export function updateTodo(
+export async function updateTodo(
   id: string,
   name: string,
   isDone: boolean,
@@ -40,7 +45,7 @@ export function updateTodo(
   todo.isDone = isDone;
   return todo;
 }
-export function deleteTodo(id: string, userId: string) {
+export async function deleteTodo(id: string, userId: string) {
   const todo = todosModels.findTodoFromId(id);
   if (!todo) {
     throw new NotFoundError("Todo with that ID doesn't exist");

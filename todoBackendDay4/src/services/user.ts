@@ -32,7 +32,7 @@ export async function findUserById(id: string) {
   return foundUser;
 }
 
-export function getUsers() {
+export async function getUsers() {
   let users = userModels.getUsers();
   if (!users) {
     throw new NotFoundError("No users created to show");
@@ -40,7 +40,7 @@ export function getUsers() {
   return users;
 }
 
-export function deleteUser(id: string) {
+export async function deleteUser(id: string) {
   let foundUser = userModels.findUserById(id);
   if (!foundUser) {
     throw new NotFoundError("No user with that id");
@@ -63,4 +63,8 @@ export async function updateUser(email: string, password: string, id: string) {
   const hashedPassword = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
   let data = userModels.updateUser(foundUser, email, hashedPassword);
   return data;
+}
+
+export function add(a, b) {
+  return a + b;
 }

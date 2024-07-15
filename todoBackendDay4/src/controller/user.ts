@@ -32,7 +32,9 @@ export async function getUsers(
   next: NextFunction
 ) {
   try {
-    const message = userServices.getUsers();
+     const message = await userServices.getUsers();
+   
+    
     res.json(message);
   } catch (error) {
     next(error);
@@ -45,7 +47,7 @@ export async function deleteUser(
 ) {
   try {
     const id = req.params.id;
-    const message = userServices.deleteUser(id);
+    const message =await userServices.deleteUser(id);
     res.json(message);
   } catch (error) {
     next(error);
